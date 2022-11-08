@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "squidcraft:squid_strip"
+  },
+  "result": "squidcraft:cooked_squid_strip",
+  "experience": 0.35,
+  "cookingtime": 200
+}

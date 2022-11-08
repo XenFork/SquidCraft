@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "squidcraft",
+  "version": "${version}",
+
+  "name": "SquidCraft",
+  "description": "Make squids useful.",
+  "authors": [
+    "XenFork Union",
+    "squid233"
+  ],
+  "contributors": [
+    "AmazingRabbit Studio",
+    "Funny Developers",
+    "Overrun Organization"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/squidcraft",
+    "sources": "https://github.com/XenFork/SquidCraft"
+  },
+
+  "license": "MIT",
+  "icon": "assets/squidcraft/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "union.xenfork.squidcraft.SquidCraft"
+    ]
+  },
+  "mixins": [
+  ],
+
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}
