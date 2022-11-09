@@ -16,7 +16,8 @@
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/squidcraft",
-    "sources": "https://github.com/XenFork/SquidCraft"
+    "sources": "https://github.com/XenFork/SquidCraft",
+    "issues": "https://github.com/XenFork/SquidCraft/issues"
   },
 
   "license": "MIT",

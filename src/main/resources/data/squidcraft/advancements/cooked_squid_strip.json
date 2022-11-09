@@ -1,0 +1,33 @@
+{
+  "parent": "squidcraft:squid_strip",
+  "display": {
+    "icon": {
+      "item": "squidcraft:cooked_squid_strip"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.cooked_squid_strip.title"
+    },
+    "description": {
+      "translate": "advancements.squidcraft.cooked_squid_strip.description"
+    }
+  },
+  "criteria": {
+    "cooked_squid_strip": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:cooked_squid_strip"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cooked_squid_strip"
+    ]
+  ]
+}

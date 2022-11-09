@@ -1,0 +1,33 @@
+{
+  "parent": "squidcraft:squid_shred",
+  "display": {
+    "icon": {
+      "item": "squidcraft:cooked_squid_shred"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.cooked_squid_shred.title"
+    },
+    "description": {
+      "translate": "advancements.squidcraft.cooked_squid_shred.description"
+    }
+  },
+  "criteria": {
+    "cooked_squid_shred": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:cooked_squid_shred"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cooked_squid_shred"
+    ]
+  ]
+}

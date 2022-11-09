@@ -1,0 +1,40 @@
+{
+  "parent": "squidcraft:root",
+  "display": {
+    "icon": {
+      "item": "squidcraft:squid_slice"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.squid_slice.title"
+    },
+    "description": {
+      "translate": "advancements.squidcraft.squid_slice.description"
+    }
+  },
+  "criteria": {
+    "squid_slice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:squid_slice"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "squid_slice"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "squidcraft:cooked_squid_slice",
+      "squidcraft:cooked_squid_slice_from_campfire_cooking",
+      "squidcraft:cooked_squid_slice_from_smoking"
+    ]
+  }
+}

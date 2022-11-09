@@ -37,6 +37,6 @@ import union.xenfork.squidcraft.SquidCraft;
 public final class ModItemGroups {
     public static final ItemGroup MAIN = FabricItemGroupBuilder.build(
         new Identifier(SquidCraft.NAMESPACE, "main"),
-        () -> new ItemStack(ModItems.SQUID_SLICE)
+        () -> new ItemStack(ModItems.COOKED_SQUID_SLICE)
     );
 }

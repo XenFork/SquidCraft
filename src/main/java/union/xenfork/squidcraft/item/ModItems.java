@@ -43,7 +43,7 @@ public final class ModItems {
         COOKED_SQUID_SHRED = register("cooked_squid_shred", mainGroup().food(meat(2, 0.6f, true))),
         COOKED_SQUID_STRIP = register("cooked_squid_strip", mainGroup().food(meat(2, 0.6f, true))),
         COOKED_SQUID_SLICE = register("cooked_squid_slice", mainGroup().food(meat(3, 0.6f))),
-        SQUID_CAKE = register("squid_cake", mainGroup().food(meat(6, 0.8f))),
+        SQUID_CAKE = register("squid_cake", mainGroup().food(meat(8, 0.8f))),
         SQUID_BLOCK = register("squid_block", ModBlocks.SQUID_BLOCK, mainGroup().food(meat(10, 1.0f))),
         DICED_CARROT = register("diced_carrot", mainGroup().food(food(1, 0.2f, true))),
         KNIFE = register("knife", new KnifeItem(ToolMaterials.IRON, 0, 0.0f, mainGroup().maxCount(1)));
@@ -81,10 +81,6 @@ public final class ModItems {
         var builder = foodBuilder(hunger, saturationMod).meat();
         if (snack) builder.snack();
         return builder.build();
-    }
-
-    private static FoodComponent food(int hunger, float saturationMod) {
-        return food(hunger, saturationMod, false);
     }
 
     private static FoodComponent meat(int hunger, float saturationMod) {

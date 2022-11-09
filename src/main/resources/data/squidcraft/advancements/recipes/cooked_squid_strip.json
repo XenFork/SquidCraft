@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "squidcraft:cooked_squid_strip"
+    ]
+  },
+  "criteria": {
+    "has_squid_strip": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:squid_strip"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "squidcraft:cooked_squid_strip"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_squid_strip",
+      "has_the_recipe"
+    ]
+  ]
+}

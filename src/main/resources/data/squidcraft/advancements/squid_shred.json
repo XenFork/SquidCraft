@@ -1,0 +1,40 @@
+{
+  "parent": "squidcraft:root",
+  "display": {
+    "icon": {
+      "item": "squidcraft:squid_shred"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.squid_shred.title"
+    },
+    "description": {
+      "translate": "advancements.squidcraft.squid_shred.description"
+    }
+  },
+  "criteria": {
+    "squid_shred": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:squid_shred"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "squid_shred"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "squidcraft:cooked_squid_shred",
+      "squidcraft:cooked_squid_shred_from_campfire_cooking",
+      "squidcraft:cooked_squid_shred_from_smoking"
+    ]
+  }
+}

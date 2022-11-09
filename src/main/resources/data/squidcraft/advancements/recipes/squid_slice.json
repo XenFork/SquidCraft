@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "squidcraft:squid_slice"
+    ]
+  },
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "squidcraft:squid_slice"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe"
+    ]
+  ]
+}

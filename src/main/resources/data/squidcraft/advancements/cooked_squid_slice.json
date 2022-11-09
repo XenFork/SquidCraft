@@ -1,0 +1,39 @@
+{
+  "parent": "squidcraft:squid_slice",
+  "display": {
+    "icon": {
+      "item": "squidcraft:cooked_squid_slice"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.cooked_squid_slice.title"
+    },
+    "description": {
+      "translate": "advancements.squidcraft.cooked_squid_slice.description"
+    }
+  },
+  "criteria": {
+    "cooked_squid_slice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:cooked_squid_slice"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cooked_squid_slice"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "squidcraft:squid_cake",
+      "squidcraft:squid_block"
+    ]
+  }
+}

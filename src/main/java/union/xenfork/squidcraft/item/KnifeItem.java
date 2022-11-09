@@ -34,6 +34,7 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ClickType;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,13 +45,16 @@ import java.util.List;
  * @since 0.13.0
  */
 public final class KnifeItem extends SwordItem {
+    private static final Text TOOLTIP = new TranslatableText("tooltip.item.squidcraft.knife")
+        .styled(style -> style.withColor(Formatting.DARK_GRAY));
+
     public KnifeItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new TranslatableText("tooltip.item.squidcraft.knife"));
+        tooltip.add(TOOLTIP);
     }
 
     @Override
@@ -60,10 +64,9 @@ public final class KnifeItem extends SwordItem {
         }
         var slotStack = slot.getStack();
         if (slotStack.getItem() == Items.CARROT) {
-            if (player.getInventory().insertStack(new ItemStack(ModItems.DICED_CARROT, 3))) {
-                slot.takeStack(1);
-                return true;
-            }
+            player.getInventory().offerOrDrop(new ItemStack(ModItems.DICED_CARROT, 3));
+            slot.takeStack(1);
+            return true;
         }
         return false;
     }

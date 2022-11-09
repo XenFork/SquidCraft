@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "squidcraft:cooked_squid_slice"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.root.title"
+    },
+    "description": {
+      "translate": "advancements.squidcraft.root.description"
+    },
+    "background": "squidcraft:textures/gui/advancements/backgrounds/squidcraft.png"
+  },
+  "criteria": {
+    "kill_squid": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:squid"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_squid"
+    ]
+  ]
+}

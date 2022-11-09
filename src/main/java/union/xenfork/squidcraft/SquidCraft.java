@@ -28,11 +28,16 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootPool;
+import net.minecraft.loot.condition.EntityPropertiesLootCondition;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.ConditionalLootFunction;
 import net.minecraft.loot.function.FurnaceSmeltLootFunction;
-import net.minecraft.loot.function.LootFunction;
+import net.minecraft.loot.function.LootingEnchantLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.predicate.entity.EntityFlagsPredicate;
+import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.util.Identifier;
 import union.xenfork.squidcraft.block.ModBlocks;
 import union.xenfork.squidcraft.item.ModItems;
@@ -54,19 +59,30 @@ public final class SquidCraft implements ModInitializer {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             if (source.isBuiltin() && SQUID_LOOT_TABLE_ID.equals(id)) {
                 tableBuilder.pool(LootPool.builder()
-                    .with(ItemEntry.builder(ModItems.SQUID_SHRED).apply(setCountFun(8, 10)).apply(furnaceSmelt()))
-                    .with(ItemEntry.builder(ModItems.SQUID_STRIP).apply(setCountFun(8, 10)).apply(furnaceSmelt()))
-                    .with(ItemEntry.builder(ModItems.SQUID_SLICE).apply(setCountFun(1, 3)).apply(furnaceSmelt()))
+                    .with(ItemEntry.builder(ModItems.SQUID_SHRED).apply(setCountFun(8, 10)).apply(fireSmelt()).apply(lootingEnchantFun()))
+                    .with(ItemEntry.builder(ModItems.SQUID_STRIP).apply(setCountFun(4, 5)).apply(fireSmelt()).apply(lootingEnchantFun()))
+                    .with(ItemEntry.builder(ModItems.SQUID_SLICE).apply(setCountFun(1, 3)).apply(fireSmelt()).apply(lootingEnchantFun()))
                     .build());
             }
         });
     }
 
-    private static LootFunction.Builder setCountFun(float min, float max) {
+    private static ConditionalLootFunction.Builder<?> setCountFun(float min, float max) {
         return SetCountLootFunction.builder(UniformLootNumberProvider.create(min, max));
     }
 
-    private static LootFunction.Builder furnaceSmelt() {
-        return FurnaceSmeltLootFunction.builder();
+    private static ConditionalLootFunction.Builder<?> lootingEnchantFun() {
+        return LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0f, 1.0f));
+    }
+
+    private static ConditionalLootFunction.Builder<?> fireSmelt() {
+        return FurnaceSmeltLootFunction.builder()
+            .conditionally(EntityPropertiesLootCondition.builder(
+                LootContext.EntityTarget.THIS,
+                EntityPredicate.Builder.create()
+                    .flags(EntityFlagsPredicate.Builder.create()
+                        .onFire(true)
+                        .build())
+            ));
     }
 }

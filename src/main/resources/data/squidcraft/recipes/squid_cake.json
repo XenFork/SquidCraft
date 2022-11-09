@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "squidcraft:cooked_squid_slice"
+    },
+    {
+      "item": "squidcraft:cooked_squid_slice"
+    },
+    {
+      "item": "squidcraft:diced_carrot"
+    },
+    {
+      "item": "squidcraft:diced_carrot"
+    }
+  ],
+  "result": {
+    "item": "squidcraft:squid_cake"
+  }
+}

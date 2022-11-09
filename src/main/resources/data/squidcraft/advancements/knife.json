@@ -1,0 +1,38 @@
+{
+  "parent": "squidcraft:cooked_squid_slice",
+  "display": {
+    "icon": {
+      "item": "squidcraft:knife"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.knife.title"
+    },
+    "description": {
+      "translate": "advancements.squidcraft.knife.description"
+    }
+  },
+  "criteria": {
+    "knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:knife"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "knife"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "squidcraft:squid_cake"
+    ]
+  }
+}

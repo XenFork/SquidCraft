@@ -1,0 +1,38 @@
+{
+  "parent": "squidcraft:knife",
+  "display": {
+    "icon": {
+      "item": "squidcraft:diced_carrot"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.diced_carrot.title"
+    },
+    "description": {
+      "translate": "advancements.squidcraft.diced_carrot.description"
+    }
+  },
+  "criteria": {
+    "diced_carrot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:diced_carrot"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "diced_carrot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "squidcraft:squid_cake"
+    ]
+  }
+}
