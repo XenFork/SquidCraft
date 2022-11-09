@@ -30,9 +30,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.FurnaceSmeltLootFunction;
+import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
+import union.xenfork.squidcraft.block.ModBlocks;
 import union.xenfork.squidcraft.item.ModItems;
 
 /**
@@ -45,17 +47,26 @@ public final class SquidCraft implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ModBlocks.registerAll();
         ModItems.registerAll();
 
         // Add items to squid
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             if (source.isBuiltin() && SQUID_LOOT_TABLE_ID.equals(id)) {
                 tableBuilder.pool(LootPool.builder()
-                    .with(ItemEntry.builder(ModItems.SQUID_SHRED).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(8, 10))).apply(FurnaceSmeltLootFunction.builder()))
-                    .with(ItemEntry.builder(ModItems.SQUID_STRIP).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(8, 10))).apply(FurnaceSmeltLootFunction.builder()))
-                    .with(ItemEntry.builder(ModItems.SQUID_SLICE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 3))).apply(FurnaceSmeltLootFunction.builder()))
+                    .with(ItemEntry.builder(ModItems.SQUID_SHRED).apply(setCountFun(8, 10)).apply(furnaceSmelt()))
+                    .with(ItemEntry.builder(ModItems.SQUID_STRIP).apply(setCountFun(8, 10)).apply(furnaceSmelt()))
+                    .with(ItemEntry.builder(ModItems.SQUID_SLICE).apply(setCountFun(1, 3)).apply(furnaceSmelt()))
                     .build());
             }
         });
+    }
+
+    private static LootFunction.Builder setCountFun(float min, float max) {
+        return SetCountLootFunction.builder(UniformLootNumberProvider.create(min, max));
+    }
+
+    private static LootFunction.Builder furnaceSmelt() {
+        return FurnaceSmeltLootFunction.builder();
     }
 }

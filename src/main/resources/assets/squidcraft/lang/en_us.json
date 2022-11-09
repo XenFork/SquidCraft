@@ -1,4 +1,5 @@
 {
+  "block.squidcraft.squid_block": "Block of Squid",
   "item.squidcraft.squid_shred": "Shreds of Squid",
   "item.squidcraft.squid_strip": "Strips of Squid",
   "item.squidcraft.squid_slice": "Slices of Squid",
@@ -6,5 +7,9 @@
   "item.squidcraft.cooked_squid_strip": "Cooked Strips of Squid",
   "item.squidcraft.cooked_squid_slice": "Cooked Slices of Squid",
   "item.squidcraft.squid_cake": "Squid Cake",
-  "itemGroup.squidcraft.main": "SquidCraft"
+  "item.squidcraft.squid_block": "Block of Squid",
+  "item.squidcraft.diced_carrot": "Diced Carrot",
+  "item.squidcraft.knife": "Knife",
+  "itemGroup.squidcraft.main": "SquidCraft",
+  "tooltip.item.squidcraft.knife": "Right click on carrot to dice"
 }

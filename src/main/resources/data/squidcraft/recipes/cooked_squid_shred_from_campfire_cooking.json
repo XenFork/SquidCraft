@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:campfire_cooking",
   "ingredient": {
     "item": "squidcraft:squid_shred"
   },
   "result": "squidcraft:cooked_squid_shred",
   "experience": 0.35,
-  "cookingtime": 100
+  "cookingtime": 300
 }

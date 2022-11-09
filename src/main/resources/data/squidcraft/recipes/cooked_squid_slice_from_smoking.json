@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "squidcraft:squid_slice"
+  },
+  "result": "squidcraft:cooked_squid_slice",
+  "experience": 0.35,
+  "cookingtime": 100
+}

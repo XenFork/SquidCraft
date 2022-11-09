@@ -1,4 +1,5 @@
 {
+  "block.squidcraft.squid_block": "鱿鱼块",
   "item.squidcraft.squid_shred": "鱿鱼丝",
   "item.squidcraft.squid_strip": "鱿鱼条",
   "item.squidcraft.squid_slice": "鱿鱼片",
@@ -6,5 +7,9 @@
   "item.squidcraft.cooked_squid_strip": "熟鱿鱼条",
   "item.squidcraft.cooked_squid_slice": "熟鱿鱼片",
   "item.squidcraft.squid_cake": "鱿鱼饼",
-  "itemGroup.squidcraft.main": "鱿鱼工艺"
+  "item.squidcraft.squid_block": "鱿鱼块",
+  "item.squidcraft.diced_carrot": "胡萝卜丁",
+  "item.squidcraft.knife": "小刀",
+  "itemGroup.squidcraft.main": "鱿鱼工艺",
+  "tooltip.item.squidcraft.knife": "右击胡萝卜切丁"
 }

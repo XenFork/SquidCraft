@@ -24,58 +24,70 @@
 
 package union.xenfork.squidcraft.item;
 
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
+import net.minecraft.block.Block;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import union.xenfork.squidcraft.SquidCraft;
+import union.xenfork.squidcraft.block.ModBlocks;
 
 /**
  * @author squid233
  * @since 0.13.0
  */
-public enum ModItems implements ItemConvertible {
-    SQUID_SHRED(new Item(mainGroup().food(meat(1, 0.3f).snack().build()))),
-    SQUID_STRIP(new Item(mainGroup().food(meat(1, 0.3f).snack().build()))),
-    SQUID_SLICE(new Item(mainGroup().food(meat(2, 0.3f).build()))),
-    COOKED_SQUID_SHRED(new Item(mainGroup().food(meat(2, 0.6f).snack().build()))),
-    COOKED_SQUID_STRIP(new Item(mainGroup().food(meat(2, 0.6f).snack().build()))),
-    COOKED_SQUID_SLICE(new Item(mainGroup().food(meat(4, 0.6f).build()))),
-    SQUID_CAKE(new Item(mainGroup().food(meat(6, 0.8f).build())));
-
-    private final Item item;
-    private final Identifier id;
-
-    ModItems(Item item) {
-        this.item = item;
-        id = new Identifier(SquidCraft.NAMESPACE, name().toLowerCase());
-    }
+public final class ModItems {
+    public static final Item
+        SQUID_SHRED = register("squid_shred", mainGroup().food(meat(1, 0.3f, true))),
+        SQUID_STRIP = register("squid_strip", mainGroup().food(meat(1, 0.3f, true))),
+        SQUID_SLICE = register("squid_slice", mainGroup().food(meat(2, 0.3f))),
+        COOKED_SQUID_SHRED = register("cooked_squid_shred", mainGroup().food(meat(2, 0.6f, true))),
+        COOKED_SQUID_STRIP = register("cooked_squid_strip", mainGroup().food(meat(2, 0.6f, true))),
+        COOKED_SQUID_SLICE = register("cooked_squid_slice", mainGroup().food(meat(3, 0.6f))),
+        SQUID_CAKE = register("squid_cake", mainGroup().food(meat(6, 0.8f))),
+        SQUID_BLOCK = register("squid_block", ModBlocks.SQUID_BLOCK, mainGroup().food(meat(10, 1.0f))),
+        DICED_CARROT = register("diced_carrot", mainGroup().food(food(1, 0.2f, true))),
+        KNIFE = register("knife", new KnifeItem(ToolMaterials.IRON, 0, 0.0f, mainGroup().maxCount(1)));
 
     public static void registerAll() {
-        for (ModItems v : values()) {
-            Registry.register(Registry.ITEM, v.id, v.item);
-        }
+    }
+
+    private static Item register(String name, Item item) {
+        return Registry.register(Registry.ITEM, new Identifier(SquidCraft.NAMESPACE, name), item);
+    }
+
+    private static Item register(String name, Item.Settings settings) {
+        return register(name, new Item(settings));
+    }
+
+    private static Item register(String name, Block block, Item.Settings settings) {
+        return register(name, new BlockItem(block, settings));
     }
 
     private static Item.Settings mainGroup() {
         return new Item.Settings().group(ModItemGroups.MAIN);
     }
 
-    private static FoodComponent.Builder meat(int hunger, float saturationMod) {
-        return new FoodComponent.Builder().hunger(hunger).saturationModifier(saturationMod).meat();
+    private static FoodComponent.Builder foodBuilder(int hunger, float saturationMod) {
+        return new FoodComponent.Builder().hunger(hunger).saturationModifier(saturationMod);
     }
 
-    public Item item() {
-        return item;
+    private static FoodComponent food(int hunger, float saturationMod, boolean snack) {
+        var builder = foodBuilder(hunger, saturationMod);
+        if (snack) builder.snack();
+        return builder.build();
     }
 
-    public Identifier id() {
-        return id;
+    private static FoodComponent meat(int hunger, float saturationMod, boolean snack) {
+        var builder = foodBuilder(hunger, saturationMod).meat();
+        if (snack) builder.snack();
+        return builder.build();
     }
 
-    @Override
-    public Item asItem() {
-        return item;
+    private static FoodComponent food(int hunger, float saturationMod) {
+        return food(hunger, saturationMod, false);
+    }
+
+    private static FoodComponent meat(int hunger, float saturationMod) {
+        return meat(hunger, saturationMod, false);
     }
 }
