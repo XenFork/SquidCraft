@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "squidcraft:cooked_squid_slice"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "squidcraft:squid_block"
+  }
+}
