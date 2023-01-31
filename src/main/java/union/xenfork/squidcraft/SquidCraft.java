@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 XenFork Union
+ * Copyright (c) 2022-2023 XenFork Union
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +40,7 @@ import net.minecraft.predicate.entity.EntityFlagsPredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.util.Identifier;
 import union.xenfork.squidcraft.block.ModBlocks;
+import union.xenfork.squidcraft.item.ModItemGroups;
 import union.xenfork.squidcraft.item.ModItems;
 
 /**
@@ -54,6 +55,7 @@ public final class SquidCraft implements ModInitializer {
     public void onInitialize() {
         ModBlocks.registerAll();
         ModItems.registerAll();
+        ModItemGroups.registerAll();
 
         // Add items to squid
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {

@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 XenFork Union
+ * Copyright (c) 2022-2023 XenFork Union
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,16 +37,16 @@ import union.xenfork.squidcraft.block.ModBlocks;
  */
 public final class ModItems {
     public static final Item
-        SQUID_SHRED = register("squid_shred", mainGroup().food(meat(1, 0.3f, true))),
-        SQUID_STRIP = register("squid_strip", mainGroup().food(meat(1, 0.3f, true))),
-        SQUID_SLICE = register("squid_slice", mainGroup().food(meat(2, 0.3f))),
-        COOKED_SQUID_SHRED = register("cooked_squid_shred", mainGroup().food(meat(2, 0.6f, true))),
-        COOKED_SQUID_STRIP = register("cooked_squid_strip", mainGroup().food(meat(2, 0.6f, true))),
-        COOKED_SQUID_SLICE = register("cooked_squid_slice", mainGroup().food(meat(3, 0.6f))),
-        SQUID_CAKE = register("squid_cake", mainGroup().food(meat(8, 0.8f))),
-        SQUID_BLOCK = register("squid_block", ModBlocks.SQUID_BLOCK, mainGroup().food(meat(10, 1.0f))),
-        DICED_CARROT = register("diced_carrot", mainGroup().food(food(1, 0.2f, true))),
-        KNIFE = register("knife", new KnifeItem(ToolMaterials.IRON, 0, 0.0f, mainGroup().maxCount(1)));
+        SQUID_SHRED = register("squid_shred", settings().food(meat(1, 0.3f, true))),
+        SQUID_STRIP = register("squid_strip", settings().food(meat(1, 0.3f, true))),
+        SQUID_SLICE = register("squid_slice", settings().food(meat(2, 0.3f))),
+        COOKED_SQUID_SHRED = register("cooked_squid_shred", settings().food(meat(2, 0.6f, true))),
+        COOKED_SQUID_STRIP = register("cooked_squid_strip", settings().food(meat(2, 0.6f, true))),
+        COOKED_SQUID_SLICE = register("cooked_squid_slice", settings().food(meat(3, 0.6f))),
+        SQUID_CAKE = register("squid_cake", settings().food(meat(8, 0.8f))),
+        SQUID_BLOCK = register("squid_block", ModBlocks.SQUID_BLOCK, settings().food(meat(10, 1.0f))),
+        DICED_CARROT = register("diced_carrot", settings().food(food(1, 0.2f, true))),
+        KNIFE = register("knife", new KnifeItem(ToolMaterials.IRON, 0, 0.0f, settings()));
 
     public static void registerAll() {
     }
@@ -63,8 +63,8 @@ public final class ModItems {
         return register(name, new BlockItem(block, settings));
     }
 
-    private static Item.Settings mainGroup() {
-        return new Item.Settings().group(ModItemGroups.MAIN);
+    private static Item.Settings settings() {
+        return new Item.Settings();
     }
 
     private static FoodComponent.Builder foodBuilder(int hunger, float saturationMod) {
