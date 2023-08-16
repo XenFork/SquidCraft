@@ -1,0 +1,9 @@
+{
+  "advancements.squidcraft.root.title": "SquidCraft",
+  "advancements.squidcraft.root.description": "A beginning of the squids",
+  "advancements.squidcraft.cooked_shredded_squid.title": "Cooked Shredded Squid",
+  "advancements.squidcraft.cooked_shredded_squid.description": "Snacks",
+  "item.squidcraft.shredded_squid": "Shredded Squid",
+  "item.squidcraft.cooked_shredded_squid": "Cooked Shredded Squid",
+  "itemGroup.squidcraft.main": "SquidCraft"
+}

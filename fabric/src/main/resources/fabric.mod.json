@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "squidcraft",
+  "version": "${version}",
+
+  "name": "SquidCraft",
+  "description": "Make squids useful.",
+  "authors": ["XenFork Union"],
+  "contact": {
+    "homepage": "https://github.com/XenFork/SquidCraft",
+    "sources": "https://github.com/XenFork/SquidCraft.git",
+    "issues": "https://github.com/XenFork/SquidCraft/issues"
+  },
+
+  "license": "MIT",
+  "icon": "assets/squidcraft/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": ["io.github.xenfork.squidcraft.fabric.SquidCraftFabric"]
+  },
+  "mixins": [
+    "squidcraft.mixins.json",
+    "squidcraft-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.22",
+    "minecraft": ">=1.20"
+  }
+}

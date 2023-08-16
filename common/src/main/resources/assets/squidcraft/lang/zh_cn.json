@@ -1,0 +1,9 @@
+{
+  "advancements.squidcraft.root.title": "鱿鱼工艺",
+  "advancements.squidcraft.root.description": "起源",
+  "advancements.squidcraft.cooked_shredded_squid.title": "熟鱿鱼丝",
+  "advancements.squidcraft.cooked_shredded_squid.description": "小吃",
+  "item.squidcraft.shredded_squid": "鱿鱼丝",
+  "item.squidcraft.cooked_shredded_squid": "熟鱿鱼丝",
+  "itemGroup.squidcraft.main": "鱿鱼工艺"
+}
