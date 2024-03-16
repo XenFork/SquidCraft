@@ -39,7 +39,7 @@ public enum ModItems {
     SHREDDED_SQUID(() -> ofSnack(1, 1f)),
     COOKED_SHREDDED_SQUID(() -> ofSnack(2, 1f)),
     GLOW_SHREDDED_SQUID(() -> ofMeat(1, 1f, builder -> builder.effect(new MobEffectInstance(MobEffects.GLOWING, 200, 0), 1f))),
-    MAGMA_SHREDDED_SQUID(() -> ofMeat(2, 0.5f, builder -> builder.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0), 0.3f))),
+    MAGMA_SHREDDED_SQUID(() -> ofMeat(2, 0.5f, builder -> builder.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0), 0.3f).alwaysEat())),
     COOKED_SHREDDED_SQUID_BLOCK(() -> new BlockItem(ModBlocks.COOKED_SHREDDED_SQUID_BLOCK.get(), new Item.Properties()));
 
     private static final DeferredRegister<Item> REGISTER = DeferredRegister.create(SquidCraft.MOD_ID, Registries.ITEM);
