@@ -41,7 +41,7 @@ public final class ModItemGroups {
                 output.accept(Items.GLOW_SQUID_SPAWN_EGG);
                 output.accept(ModItems.SHREDDED_SQUID.get());
                 output.accept(ModItems.COOKED_SHREDDED_SQUID.get());
-                output.accept(ModItems.GLOWING_SHREDDED_SQUID.get());
+                output.accept(ModItems.GLOW_SHREDDED_SQUID.get());
                 output.accept(ModItems.MAGMA_SHREDDED_SQUID.get());
                 output.accept(ModItems.COOKED_SHREDDED_SQUID_BLOCK.get());
             })

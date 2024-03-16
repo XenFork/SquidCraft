@@ -13,12 +13,12 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_glowing_shredded_squid": {
+    "has_glow_shredded_squid": {
       "conditions": {
         "items": [
           {
             "items": [
-              "squidcraft:glowing_shredded_squid"
+              "squidcraft:glow_shredded_squid"
             ]
           }
         ]
@@ -47,7 +47,7 @@
   "requirements": [
     [
       "has_shredded_squid",
-      "has_glowing_shredded_squid",
+      "has_glow_shredded_squid",
       "has_cooked_shredded_squid",
       "has_the_recipe"
     ]

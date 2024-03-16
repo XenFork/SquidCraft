@@ -1,12 +1,12 @@
 {
   "parent": "squidcraft:root",
   "criteria": {
-    "glowing_shredded_squid": {
+    "glow_shredded_squid": {
       "conditions": {
         "items": [
           {
             "items": [
-              "squidcraft:glowing_shredded_squid"
+              "squidcraft:glow_shredded_squid"
             ]
           }
         ]
@@ -17,13 +17,13 @@
   "display": {
     "announce_to_chat": false,
     "description": {
-      "translate": "advancements.squidcraft.glowing_shredded_squid.description"
+      "translate": "advancements.squidcraft.glow_shredded_squid.description"
     },
     "title": {
-      "translate": "advancements.squidcraft.glowing_shredded_squid.title"
+      "translate": "advancements.squidcraft.glow_shredded_squid.title"
     },
     "icon": {
-      "item": "squidcraft:glowing_shredded_squid"
+      "item": "squidcraft:glow_shredded_squid"
     }
   }
 }

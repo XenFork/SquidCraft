@@ -50,7 +50,7 @@ public class SquidCraft {
                 if (EntityType.SQUID.getDefaultLootTable().equals(id)) {
                     addLootItem(context, ModItems.SHREDDED_SQUID.get());
                 } else if (EntityType.GLOW_SQUID.getDefaultLootTable().equals(id)) {
-                    addLootItem(context, ModItems.GLOWING_SHREDDED_SQUID.get());
+                    addLootItem(context, ModItems.GLOW_SHREDDED_SQUID.get());
                 }
             }
         });

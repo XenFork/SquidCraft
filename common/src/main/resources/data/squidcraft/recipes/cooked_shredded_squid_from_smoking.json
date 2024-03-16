@@ -5,7 +5,7 @@
       "item": "squidcraft:shredded_squid"
     },
     {
-      "item": "squidcraft:glowing_shredded_squid"
+      "item": "squidcraft:glow_shredded_squid"
     }
   ],
   "result": "squidcraft:cooked_shredded_squid",
