@@ -1,9 +1,15 @@
 {
   "advancements.squidcraft.root.title": "SquidCraft",
-  "advancements.squidcraft.root.description": "A beginning of the squids",
+  "advancements.squidcraft.root.description": "Get shredded squid",
   "advancements.squidcraft.cooked_shredded_squid.title": "Cooked Shredded Squid",
-  "advancements.squidcraft.cooked_shredded_squid.description": "Snacks",
+  "advancements.squidcraft.cooked_shredded_squid.description": "Get cooked shredded squid",
+  "advancements.squidcraft.glowing_shredded_squid.title": "Glowing Shredded Squid",
+  "advancements.squidcraft.glowing_shredded_squid.description": "Get glowing shredded squid",
+  "advancements.squidcraft.magma_shredded_squid.title": "Magma Shredded Squid",
+  "advancements.squidcraft.magma_shredded_squid.description": "Get magma shredded squid",
   "item.squidcraft.shredded_squid": "Shredded Squid",
   "item.squidcraft.cooked_shredded_squid": "Cooked Shredded Squid",
+  "item.squidcraft.glowing_shredded_squid": "Glowing Shredded Squid",
+  "item.squidcraft.magma_shredded_squid": "Magma Shredded Squid",
   "itemGroup.squidcraft.main": "SquidCraft"
 }

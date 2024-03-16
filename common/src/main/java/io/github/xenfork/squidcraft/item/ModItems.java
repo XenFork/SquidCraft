@@ -20,10 +20,13 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.xenfork.squidcraft.SquidCraft;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 
 import java.util.Locale;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
@@ -32,7 +35,9 @@ import java.util.function.Supplier;
  */
 public enum ModItems {
     SHREDDED_SQUID(() -> ofSnack(1, 1f)),
-    COOKED_SHREDDED_SQUID(() -> ofSnack(2, 1f));
+    COOKED_SHREDDED_SQUID(() -> ofSnack(2, 1f)),
+    GLOWING_SHREDDED_SQUID(() -> ofMeat(1, 1f, builder -> builder.effect(new MobEffectInstance(MobEffects.GLOWING, 200, 0), 1f))),
+    MAGMA_SHREDDED_SQUID(() -> ofMeat(2, 0.5f, builder -> builder.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0), 0.3f)));
 
     private static final DeferredRegister<Item> REGISTER = DeferredRegister.create(SquidCraft.MOD_ID, Registries.ITEM);
     private final String path;
@@ -56,13 +61,17 @@ public enum ModItems {
         REGISTER.register();
     }
 
-    private static Item ofSnack(int nutrition, float saturationMod) {
-        return new Item(new Item.Properties().food(new FoodProperties.Builder()
+    private static Item ofMeat(int nutrition, float saturationMod, Consumer<FoodProperties.Builder> consumer) {
+        final FoodProperties.Builder builder = new FoodProperties.Builder()
             .nutrition(nutrition)
             .saturationMod(saturationMod)
-            .fast()
-            .meat()
-            .build()));
+            .meat();
+        consumer.accept(builder);
+        return new Item(new Item.Properties().food(builder.build()));
+    }
+
+    private static Item ofSnack(int nutrition, float saturationMod) {
+        return ofMeat(nutrition, saturationMod, FoodProperties.Builder::fast);
     }
 
     public String path() {

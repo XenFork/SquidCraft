@@ -1,8 +1,13 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "squidcraft:shredded_squid"
-  },
+  "ingredient": [
+    {
+      "item": "squidcraft:shredded_squid"
+    },
+    {
+      "item": "squidcraft:glowing_shredded_squid"
+    }
+  ],
   "result": "squidcraft:cooked_shredded_squid",
   "experience": 0.35,
   "cookingtime": 100

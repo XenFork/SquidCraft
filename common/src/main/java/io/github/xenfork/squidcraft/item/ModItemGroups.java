@@ -38,8 +38,11 @@ public final class ModItemGroups {
             .icon(() -> new ItemStack(ModItems.SHREDDED_SQUID.get()))
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(Items.SQUID_SPAWN_EGG);
+                output.accept(Items.GLOW_SQUID_SPAWN_EGG);
                 output.accept(ModItems.SHREDDED_SQUID.get());
                 output.accept(ModItems.COOKED_SHREDDED_SQUID.get());
+                output.accept(ModItems.GLOWING_SHREDDED_SQUID.get());
+                output.accept(ModItems.MAGMA_SHREDDED_SQUID.get());
             })
         ));
 
