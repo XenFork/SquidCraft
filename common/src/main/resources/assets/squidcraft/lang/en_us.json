@@ -7,9 +7,11 @@
   "advancements.squidcraft.glowing_shredded_squid.description": "Get glowing shredded squid",
   "advancements.squidcraft.magma_shredded_squid.title": "Magma Shredded Squid",
   "advancements.squidcraft.magma_shredded_squid.description": "Get magma shredded squid",
+  "block.squidcraft.cooked_shredded_squid_block": "Block of Cooked Shredded Squid",
   "item.squidcraft.shredded_squid": "Shredded Squid",
   "item.squidcraft.cooked_shredded_squid": "Cooked Shredded Squid",
   "item.squidcraft.glowing_shredded_squid": "Glowing Shredded Squid",
   "item.squidcraft.magma_shredded_squid": "Magma Shredded Squid",
+  "item.squidcraft.cooked_shredded_squid_block": "Block of Cooked Shredded Squid",
   "itemGroup.squidcraft.main": "SquidCraft"
 }

@@ -25,6 +25,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_cooked_shredded_squid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:cooked_shredded_squid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "squidcraft:cooked_shredded_squid"
@@ -36,6 +48,7 @@
     [
       "has_shredded_squid",
       "has_glowing_shredded_squid",
+      "has_cooked_shredded_squid",
       "has_the_recipe"
     ]
   ],

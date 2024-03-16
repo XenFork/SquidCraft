@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2023 XenFork Union
+ * Copyright (c) 2023-2024 XenFork Union
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,10 +19,12 @@ package io.github.xenfork.squidcraft.item;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.xenfork.squidcraft.SquidCraft;
+import io.github.xenfork.squidcraft.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
 import java.util.Locale;
@@ -37,17 +39,13 @@ public enum ModItems {
     SHREDDED_SQUID(() -> ofSnack(1, 1f)),
     COOKED_SHREDDED_SQUID(() -> ofSnack(2, 1f)),
     GLOWING_SHREDDED_SQUID(() -> ofMeat(1, 1f, builder -> builder.effect(new MobEffectInstance(MobEffects.GLOWING, 200, 0), 1f))),
-    MAGMA_SHREDDED_SQUID(() -> ofMeat(2, 0.5f, builder -> builder.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0), 0.3f)));
+    MAGMA_SHREDDED_SQUID(() -> ofMeat(2, 0.5f, builder -> builder.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0), 0.3f))),
+    COOKED_SHREDDED_SQUID_BLOCK(() -> new BlockItem(ModBlocks.COOKED_SHREDDED_SQUID_BLOCK.get(), new Item.Properties()));
 
     private static final DeferredRegister<Item> REGISTER = DeferredRegister.create(SquidCraft.MOD_ID, Registries.ITEM);
     private final String path;
     private final Supplier<Item> supplier;
     private RegistrySupplier<Item> registrySupplier;
-
-    ModItems(Supplier<Item> supplier, String path) {
-        this.path = path;
-        this.supplier = supplier;
-    }
 
     ModItems(Supplier<Item> supplier) {
         this.path = name().toLowerCase(Locale.ROOT);
@@ -55,7 +53,7 @@ public enum ModItems {
     }
 
     public static void init() {
-        for (ModItems value : values()) {
+        for (var value : values()) {
             value.registrySupplier = REGISTER.register(value.path(), value.supplier);
         }
         REGISTER.register();

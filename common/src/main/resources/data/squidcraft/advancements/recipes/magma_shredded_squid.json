@@ -1,6 +1,18 @@
 {
   "parent": "squidcraft:recipes/root",
   "criteria": {
+    "has_cooked_shredded_squid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:cooked_shredded_squid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_magma_shredded_squid": {
       "conditions": {
         "items": [
@@ -22,6 +34,7 @@
   },
   "requirements": [
     [
+      "has_cooked_shredded_squid",
       "has_magma_shredded_squid",
       "has_the_recipe"
     ]

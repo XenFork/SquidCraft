@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2023 XenFork Union
+ * Copyright (c) 2023-2024 XenFork Union
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,6 +43,7 @@ public final class ModItemGroups {
                 output.accept(ModItems.COOKED_SHREDDED_SQUID.get());
                 output.accept(ModItems.GLOWING_SHREDDED_SQUID.get());
                 output.accept(ModItems.MAGMA_SHREDDED_SQUID.get());
+                output.accept(ModItems.COOKED_SHREDDED_SQUID_BLOCK.get());
             })
         ));
 

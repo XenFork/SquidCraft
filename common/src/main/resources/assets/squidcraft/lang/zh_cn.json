@@ -7,9 +7,11 @@
   "advancements.squidcraft.glowing_shredded_squid.description": "获得荧光鱿鱼丝",
   "advancements.squidcraft.magma_shredded_squid.title": "岩浆鱿鱼丝",
   "advancements.squidcraft.magma_shredded_squid.description": "获得岩浆鱿鱼丝",
+  "block.squidcraft.cooked_shredded_squid_block": "熟鱿鱼丝块",
   "item.squidcraft.shredded_squid": "鱿鱼丝",
   "item.squidcraft.cooked_shredded_squid": "熟鱿鱼丝",
   "item.squidcraft.glowing_shredded_squid": "荧光鱿鱼丝",
   "item.squidcraft.magma_shredded_squid": "岩浆鱿鱼丝",
+  "item.squidcraft.cooked_shredded_squid_block": "熟鱿鱼丝块",
   "itemGroup.squidcraft.main": "鱿鱼工艺"
 }

@@ -1,12 +1,12 @@
 {
   "parent": "squidcraft:cooked_shredded_squid",
   "criteria": {
-    "magma_shredded_squid": {
+    "cooked_shredded_squid_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "squidcraft:magma_shredded_squid"
+              "squidcraft:cooked_shredded_squid_block"
             ]
           }
         ]
@@ -15,15 +15,15 @@
     }
   },
   "display": {
-    "announce_to_chat": false,
+    "frame": "goal",
     "description": {
-      "translate": "advancements.squidcraft.magma_shredded_squid.description"
+      "translate": "advancements.squidcraft.cooked_shredded_squid_block.description"
     },
     "title": {
-      "translate": "advancements.squidcraft.magma_shredded_squid.title"
+      "translate": "advancements.squidcraft.cooked_shredded_squid_block.title"
     },
     "icon": {
-      "item": "squidcraft:magma_shredded_squid"
+      "item": "squidcraft:cooked_shredded_squid_block"
     }
   }
 }

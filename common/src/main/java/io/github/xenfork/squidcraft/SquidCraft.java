@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2023 XenFork Union
+ * Copyright (c) 2023-2024 XenFork Union
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -17,6 +17,7 @@
 package io.github.xenfork.squidcraft;
 
 import dev.architectury.event.events.common.LootEvent;
+import io.github.xenfork.squidcraft.block.ModBlocks;
 import io.github.xenfork.squidcraft.item.ModItemGroups;
 import io.github.xenfork.squidcraft.item.ModItems;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
@@ -41,6 +42,7 @@ public class SquidCraft {
     public static final String MOD_ID = "squidcraft";
 
     public static void init() {
+        ModBlocks.init();
         ModItems.init();
         ModItemGroups.init();
         LootEvent.MODIFY_LOOT_TABLE.register((lootDataManager, id, context, builtin) -> {
