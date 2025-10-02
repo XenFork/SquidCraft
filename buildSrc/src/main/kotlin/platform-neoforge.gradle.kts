@@ -150,13 +150,17 @@ tasks.named<ProcessResources>("processResources") {
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
 val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {
-    val replaceProperties = mapOf(
+    inputs.properties(
         "mod_version" to project.version,
         "neo_version" to neoforgeVersion.neoVersion,
         "minecraft_version_range" to neoforgeVersion.minecraftVersionRange
     )
-    inputs.properties(replaceProperties)
-    expand(replaceProperties)
+    expand(
+        "mod_version" to inputs.properties["mod_version"]!!,
+        "neo_version" to inputs.properties["neo_version"]!!,
+        "minecraft_version_range" to inputs.properties["minecraft_version_range"]!!
+    )
+
     from("src/main/templates")
     into("build/generated/sources/modMetadata")
 }

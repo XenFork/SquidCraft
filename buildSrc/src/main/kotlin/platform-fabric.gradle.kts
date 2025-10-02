@@ -70,15 +70,19 @@ tasks.named("compileJava") {
 tasks.named<ProcessResources>("processResources") {
     dependsOn(copyCommonRes)
 
-    val replaceProperties = mapOf(
+    inputs.properties(
         "version" to project.version,
         "required_minecraft_version" to fabricVersion.requiredMinecraftVersion,
         "required_java_version" to fabricVersion.javaVersion
     )
 
-    inputs.properties(replaceProperties)
     filesMatching("fabric.mod.json") {
-        expand(replaceProperties)
+        println(inputs.properties["required_minecraft_version"])
+        expand(
+            "version" to inputs.properties["version"]!!,
+            "required_minecraft_version" to inputs.properties["required_minecraft_version"]!!,
+            "required_java_version" to inputs.properties["required_java_version"]!!
+        )
     }
 }
 
