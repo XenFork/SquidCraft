@@ -11,3 +11,11 @@ version = mod_version
 repositories {
     mavenCentral()
 }
+
+tasks.register("runAllDataGen") {
+    subprojects.forEach { project ->
+        val tasks = project.tasks
+        tasks.findByName("runDatagen")?.also { dependsOn(it) }
+        tasks.findByName("runData")?.also { dependsOn(it) }
+    }
+}
