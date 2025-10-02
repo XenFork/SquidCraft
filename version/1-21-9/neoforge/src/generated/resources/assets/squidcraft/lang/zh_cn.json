@@ -14,5 +14,7 @@
   "item.squidcraft.glow_shredded_squid": "荧光鱿鱼丝",
   "item.squidcraft.magma_shredded_squid": "岩浆鱿鱼丝",
   "item.squidcraft.shredded_squid": "鱿鱼丝",
-  "itemGroup.squidcraft.main": "鱿鱼工艺"
+  "itemGroup.squidcraft.main": "鱿鱼工艺",
+  "modmenu.descriptionTranslation.squidcraft": "让鱿鱼更有用",
+  "modmenu.nameTranslation.squidcraft": "鱿鱼工艺"
 }

@@ -14,5 +14,7 @@
   "item.squidcraft.glow_shredded_squid": "Glow Shredded Squid",
   "item.squidcraft.magma_shredded_squid": "Magma Shredded Squid",
   "item.squidcraft.shredded_squid": "Shredded Squid",
-  "itemGroup.squidcraft.main": "SquidCraft"
+  "itemGroup.squidcraft.main": "SquidCraft",
+  "modmenu.descriptionTranslation.squidcraft": "Make squids useful.",
+  "modmenu.nameTranslation.squidcraft": "SquidCraft"
 }

@@ -15,6 +15,7 @@ version = mod_version
 
 repositories {
     maven("https://maven.shedaniel.me/")
+    maven("https://maven.terraformersmc.com/")
 }
 
 base {
@@ -47,6 +48,7 @@ dependencies {
     modImplementation(fabricVersion.fabricApiVersion.map { "net.fabricmc.fabric-api:fabric-api:$it" })
 
     modRuntimeOnly(fabricVersion.reiVersion.map { "me.shedaniel:RoughlyEnoughItems-fabric:$it" })
+    modRuntimeOnly(fabricVersion.modmenuVersion.map { "com.terraformersmc:modmenu:$it" })
 }
 
 val copyCommonCode = tasks.register<Copy>("copyCommonCode") {
@@ -77,7 +79,6 @@ tasks.named<ProcessResources>("processResources") {
     )
 
     filesMatching("fabric.mod.json") {
-        println(inputs.properties["required_minecraft_version"])
         expand(
             "version" to inputs.properties["version"]!!,
             "required_minecraft_version" to inputs.properties["required_minecraft_version"]!!,

@@ -1,8 +1,8 @@
-// 1.20.1	2025-10-02T22:41:21.2318266	SquidCraft/Model Definitions
+// 1.20.1	2025-10-03T00:28:49.1777416	SquidCraft/Model Definitions
 36b26ff97a8a2aea02e19f90537686593a1e84cc assets\squidcraft\models\item\glow_shredded_squid.json
 458ceee195d3f7de1261fe65e2c93a2c93051cfa assets\squidcraft\models\item\magma_shredded_squid.json
 4d7b138d86a6068337f70667ad11b639e28ba053 assets\squidcraft\blockstates\cooked_shredded_squid_block.json
 8a3fa4ced507f23229e9eaf7a3b7ccfcfe4f2504 assets\squidcraft\models\item\shredded_squid.json
 4873bca41162d0257cea331a2e033ced0afeca33 assets\squidcraft\models\item\cooked_shredded_squid_block.json
-10974b3f10c8b9815dbc4e10243d6b57655180a2 assets\squidcraft\models\block\cooked_shredded_squid_block.json
 3095a5f343f71cee66789fa4a67cfbf2e2dafcfb assets\squidcraft\models\item\cooked_shredded_squid.json
+10974b3f10c8b9815dbc4e10243d6b57655180a2 assets\squidcraft\models\block\cooked_shredded_squid_block.json

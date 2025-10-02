@@ -49,6 +49,8 @@ public final class SquidCraftCommonDataGen {
         lang.add(CommonItems.GLOW_SHREDDED_SQUID, "Glow Shredded Squid");
         lang.add(CommonItems.MAGMA_SHREDDED_SQUID, "Magma Shredded Squid");
         lang.add(CommonCreativeTabs.MAIN, "SquidCraft");
+        lang.addValue("modmenu.nameTranslation.squidcraft", "SquidCraft");
+        lang.addValue("modmenu.descriptionTranslation.squidcraft", "Make squids useful.");
     }
 
     private void initializeLangZhCn() {
@@ -69,6 +71,8 @@ public final class SquidCraftCommonDataGen {
         lang.add(CommonItems.GLOW_SHREDDED_SQUID, "荧光鱿鱼丝");
         lang.add(CommonItems.MAGMA_SHREDDED_SQUID, "岩浆鱿鱼丝");
         lang.add(CommonCreativeTabs.MAIN, "鱿鱼工艺");
+        lang.addValue("modmenu.nameTranslation.squidcraft", "鱿鱼工艺");
+        lang.addValue("modmenu.descriptionTranslation.squidcraft", "让鱿鱼更有用");
     }
 
     private void initializeTags() {

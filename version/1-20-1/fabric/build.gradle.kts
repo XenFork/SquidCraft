@@ -10,4 +10,5 @@ fabricVersion {
     javaVersion = 17
     requiredMinecraftVersion = ">=1.20 <1.20.2-"
     reiVersion = "12.1.785"
+    modmenuVersion = "7.2.2"
 }

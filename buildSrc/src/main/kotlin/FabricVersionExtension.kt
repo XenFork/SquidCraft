@@ -11,6 +11,7 @@ interface FabricVersionExtension {
     val javaVersion: Property<Int>
     val requiredMinecraftVersion: Property<String>
     val reiVersion: Property<String>
+    val modmenuVersion: Property<String>
 }
 
 fun Project.fabricVersion(action: Action<FabricVersionExtension>) {
