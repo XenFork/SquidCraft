@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "squidcraft:cooked_shredded_squid"
+    },
+    {
+      "item": "squidcraft:cooked_shredded_squid"
+    },
+    {
+      "item": "minecraft:magma_cream"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "squidcraft:magma_shredded_squid"
+  }
+}

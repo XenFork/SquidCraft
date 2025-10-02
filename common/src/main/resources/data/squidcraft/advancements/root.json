@@ -1,0 +1,29 @@
+{
+  "criteria": {
+    "shredded_squid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:shredded_squid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "description": {
+      "translate": "advancements.squidcraft.root.description"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.root.title"
+    },
+    "icon": {
+      "item": "squidcraft:shredded_squid"
+    }
+  }
+}

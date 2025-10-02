@@ -1,0 +1,29 @@
+{
+  "parent": "squidcraft:root",
+  "criteria": {
+    "cooked_shredded_squid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:cooked_shredded_squid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.squidcraft.cooked_shredded_squid.description"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.cooked_shredded_squid.title"
+    },
+    "icon": {
+      "id": "squidcraft:cooked_shredded_squid"
+    }
+  }
+}

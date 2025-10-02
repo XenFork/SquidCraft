@@ -1,0 +1,29 @@
+{
+  "parent": "squidcraft:root",
+  "criteria": {
+    "glow_shredded_squid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:glow_shredded_squid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.squidcraft.glow_shredded_squid.description"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.glow_shredded_squid.title"
+    },
+    "icon": {
+      "item": "squidcraft:glow_shredded_squid"
+    }
+  }
+}

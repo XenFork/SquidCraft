@@ -1,0 +1,29 @@
+{
+  "parent": "squidcraft:cooked_shredded_squid",
+  "criteria": {
+    "magma_shredded_squid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "squidcraft:magma_shredded_squid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.squidcraft.magma_shredded_squid.description"
+    },
+    "title": {
+      "translate": "advancements.squidcraft.magma_shredded_squid.title"
+    },
+    "icon": {
+      "item": "squidcraft:magma_shredded_squid"
+    }
+  }
+}
