@@ -1,3 +1,5 @@
+import net.fabricmc.loom.task.AbstractRemapJarTask
+
 plugins {
     id("fabric-loom")
 }
@@ -86,6 +88,18 @@ tasks.withType<JavaCompile> {
 
 java {
     withSourcesJar()
+}
+
+fun AbstractArchiveTask.addVersionSuffix() {
+    archiveVersion = fabricVersion.minecraftVersion.map { "$version-$it-fabric" }
+}
+
+tasks.withType<Jar> {
+    addVersionSuffix()
+}
+
+tasks.withType<AbstractRemapJarTask> {
+    addVersionSuffix()
 }
 
 tasks.named<Jar>("jar") {

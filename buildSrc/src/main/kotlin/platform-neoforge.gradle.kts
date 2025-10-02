@@ -165,3 +165,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
 sourceSets.main.get().resources.srcDir(generateModMetadata)
 // To avoid having to run "generateModMetadata" manually, make it run on every project reload
 neoForge.ideSyncTask(generateModMetadata)
+
+tasks.withType<Jar> {
+    archiveVersion = neoforgeVersion.minecraftVersion.map { "$version-$it-neoforge" }
+}

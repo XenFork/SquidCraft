@@ -4,6 +4,7 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.the
 
 interface NeoForgeVersionExtension {
+    val minecraftVersion: Property<String>
     val parchmentMinecraftVersion: Property<String>
     val parchmentMappingsVersion: Property<String>
     val neoVersion: Property<String>
