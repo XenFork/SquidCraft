@@ -7,4 +7,5 @@ neoforgeVersion {
     parchmentMappingsVersion = "2025.09.14"
     neoVersion = "21.9.3-beta"
     javaVersion = 21
+    minecraftVersionRange = "[1.21.9]"
 }

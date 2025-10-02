@@ -8,7 +8,7 @@ interface NeoForgeVersionExtension {
     val parchmentMappingsVersion: Property<String>
     val neoVersion: Property<String>
     val javaVersion: Property<Int>
-    val requiredMinecraftVersion: Property<String>
+    val minecraftVersionRange: Property<String>
 }
 
 fun Project.neoforgeVersion(action: Action<NeoForgeVersionExtension>) {

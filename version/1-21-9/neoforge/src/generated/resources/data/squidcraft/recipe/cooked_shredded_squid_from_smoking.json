@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 50,
+  "experience": 0.35,
+  "ingredient": [
+    "squidcraft:shredded_squid",
+    "squidcraft:glow_shredded_squid"
+  ],
+  "result": {
+    "count": 1,
+    "id": "squidcraft:cooked_shredded_squid"
+  }
+}

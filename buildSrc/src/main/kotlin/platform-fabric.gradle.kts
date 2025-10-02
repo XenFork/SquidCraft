@@ -24,7 +24,7 @@ loom {
 
     mods {
         create("squidcraft") {
-            sourceSet(sourceSets["main"])
+            sourceSet(sourceSets.main.get())
             sourceSet(sourceSets["client"])
         }
     }
@@ -68,18 +68,15 @@ tasks.named("compileJava") {
 tasks.named<ProcessResources>("processResources") {
     dependsOn(copyCommonRes)
 
-    inputs.properties(
+    val replaceProperties = mapOf(
         "version" to project.version,
         "required_minecraft_version" to fabricVersion.requiredMinecraftVersion,
         "required_java_version" to fabricVersion.javaVersion
     )
 
+    inputs.properties(replaceProperties)
     filesMatching("fabric.mod.json") {
-        expand(
-            "version" to inputs.properties["version"]!!,
-            "required_minecraft_version" to inputs.properties["required_minecraft_version"]!!,
-            "required_java_version" to inputs.properties["required_java_version"]!!
-        )
+        expand(replaceProperties)
     }
 }
 

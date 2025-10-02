@@ -31,7 +31,6 @@ import net.minecraft.registry.RegistryWrapper;
 public class SquidCraftFabricDataGen implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-
         SquidCraftCommonDataGen common = new SquidCraftCommonDataGen();
         common.initialize();
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();

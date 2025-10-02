@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "squidcraft:cooked_shredded_squid_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "squidcraft:cooked_shredded_squid"
+  }
+}
