@@ -7,30 +7,33 @@ import io.github.xenfork.squidcraft.common.block.CommonBlock;
 import io.github.xenfork.squidcraft.common.item.*;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.MapColor;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.*;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.FurnaceSmeltLootFunction;
-import net.minecraft.loot.function.LootingEnchantLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.entity.EntityFlagsPredicate;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.advancements.critereon.EntityFlagsPredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 /**
  * @since 0.14.0
@@ -40,19 +43,19 @@ public final class FabricBackend implements Backend {
     public void registerBlock(CommonBlock block) {
         CommonIdentifier identifier = block.identifier();
 
-        AbstractBlock.Settings settings = AbstractBlock.Settings.create();
+        BlockBehaviour.Properties settings = BlockBehaviour.Properties.of();
         settings.mapColor(switch (block.mapColor()) {
             case TERRACOTTA_WHITE -> MapColor.TERRACOTTA_WHITE;
         });
         if (block.instantBreak()) {
-            settings.breakInstantly();
+            settings.instabreak();
         }
-        settings.sounds(switch (block.soundType()) {
-            case SLIME_BLOCK -> BlockSoundGroup.SLIME;
+        settings.sound(switch (block.soundType()) {
+            case SLIME_BLOCK -> SoundType.SLIME_BLOCK;
         });
 
-        Registry.register(Registries.BLOCK,
-            new Identifier(identifier.namespace(), identifier.path()),
+        Registry.register(BuiltInRegistries.BLOCK,
+            new ResourceLocation(identifier.namespace(), identifier.path()),
             new Block(settings));
     }
 
@@ -63,27 +66,27 @@ public final class FabricBackend implements Backend {
         CommonConsumableComponent consumableComponent = item.consumableComponent();
         CommonBlock commonBlock = item.itemBlock();
 
-        Item.Settings settings = new Item.Settings();
+        Item.Properties settings = new Item.Properties();
         if (commonFoodComponent != null) {
-            FoodComponent.Builder builder = new FoodComponent.Builder()
-                .hunger(commonFoodComponent.nutrition())
-                .saturationModifier(commonFoodComponent.saturationModifier());
+            FoodProperties.Builder builder = new FoodProperties.Builder()
+                .nutrition(commonFoodComponent.nutrition())
+                .saturationMod(commonFoodComponent.saturationModifier());
             if (commonFoodComponent.meat()) {
                 builder.meat();
             }
             if (commonFoodComponent.alwaysEat()) {
-                builder.alwaysEdible();
+                builder.alwaysEat();
             }
             if (consumableComponent != null) {
                 if (consumableComponent.fast()) {
-                    builder.snack();
+                    builder.fast();
                 }
                 for (var entry : consumableComponent.effects()) {
                     CommonEffectInstance instance = entry.getKey();
                     float chance = entry.getValue();
-                    builder.statusEffect(new StatusEffectInstance(switch (instance.effect()) {
-                        case FIRE_RESISTANCE -> StatusEffects.FIRE_RESISTANCE;
-                        case GLOWING -> StatusEffects.GLOWING;
+                    builder.effect(new MobEffectInstance(switch (instance.effect()) {
+                        case FIRE_RESISTANCE -> MobEffects.FIRE_RESISTANCE;
+                        case GLOWING -> MobEffects.GLOWING;
                     }, instance.durationTicks(), instance.amplifier()), chance);
                 }
             }
@@ -96,22 +99,22 @@ public final class FabricBackend implements Backend {
         } else {
             item1 = new Item(settings);
         }
-        Registry.register(Registries.ITEM,
-            new Identifier(identifier.namespace(), identifier.path()),
+        Registry.register(BuiltInRegistries.ITEM,
+            new ResourceLocation(identifier.namespace(), identifier.path()),
             item1);
     }
 
     @Override
     public void registerCreativeTab(CommonCreativeTab creativeTab) {
         CommonIdentifier identifier = creativeTab.identifier();
-        Registry.register(Registries.ITEM_GROUP,
-            new Identifier(identifier.namespace(), identifier.path()),
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
+            new ResourceLocation(identifier.namespace(), identifier.path()),
             FabricItemGroup.builder()
-                .displayName(Text.translatable(creativeTab.titleTranslationKey()))
+                .title(Component.translatable(creativeTab.titleTranslationKey()))
                 .icon(() -> new ItemStack(RegUtil.item(creativeTab.icon())))
-                .entries((displayContext, entries) -> {
+                .displayItems((displayContext, entries) -> {
                     for (ICommonItem displayItem : creativeTab.displayItems()) {
-                        entries.add(RegUtil.item(displayItem));
+                        entries.accept(RegUtil.item(displayItem));
                     }
                 })
                 .build());
@@ -121,9 +124,9 @@ public final class FabricBackend implements Backend {
     public void registerLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, builder, source) -> {
             if (source.isBuiltin()) {
-                if (EntityType.SQUID.getLootTableId().equals(id)) {
+                if (EntityType.SQUID.getDefaultLootTable().equals(id)) {
                     addLootItem(builder, RegUtil.item(CommonItems.SHREDDED_SQUID));
-                } else if (EntityType.GLOW_SQUID.getLootTableId().equals(id)) {
+                } else if (EntityType.GLOW_SQUID.getDefaultLootTable().equals(id)) {
                     addLootItem(builder, RegUtil.item(CommonItems.GLOW_SHREDDED_SQUID));
                 }
             }
@@ -131,20 +134,20 @@ public final class FabricBackend implements Backend {
     }
 
     private static void addLootItem(LootTable.Builder builder, Item item) {
-        builder.pool(LootPool.builder()
-            .rolls(ConstantLootNumberProvider.create(1f))
-            .with(ItemEntry.builder(item)
-                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 8f)))
-                .apply(FurnaceSmeltLootFunction.builder().conditionally(() ->
-                    EntityPropertiesLootCondition.builder(
+        builder.withPool(LootPool.lootPool()
+            .setRolls(ConstantValue.exactly(1f))
+            .add(LootItem.lootTableItem(item)
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 8f)))
+                .apply(SmeltItemFunction.smelted().when(() ->
+                    LootItemEntityPropertyCondition.hasProperties(
                         LootContext.EntityTarget.THIS,
-                        EntityPredicate.Builder.create()
-                            .flags(EntityFlagsPredicate.Builder.create()
-                                .onFire(true)
+                        EntityPredicate.Builder.entity()
+                            .flags(EntityFlagsPredicate.Builder.flags()
+                                .setOnFire(true)
                                 .build())
                     ).build())
                 )
-                .apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(1f, 4f)))
+                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1f, 4f)))
             )
         );
     }

@@ -14,6 +14,7 @@ group = maven_group
 version = mod_version
 
 repositories {
+    maven("https://maven.shedaniel.me/")
     maven("https://maven.parchmentmc.org/")
 }
 
@@ -115,6 +116,8 @@ configurations {
 
 dependencies {
     implementation(project(":common"))
+
+    runtimeOnly(neoforgeVersion.reiVersion.map { "me.shedaniel:RoughlyEnoughItems-neoforge:$it" })
 }
 
 // IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.

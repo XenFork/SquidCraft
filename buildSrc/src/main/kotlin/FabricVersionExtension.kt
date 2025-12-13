@@ -5,7 +5,8 @@ import org.gradle.kotlin.dsl.the
 
 interface FabricVersionExtension {
     val minecraftVersion: Property<String>
-    val mappingsVersion: Property<String>
+    val parchmentMinecraftVersion: Property<String>
+    val parchmentMappingsVersion: Property<String>
     val fabricLoaderVersion: Property<String>
     val fabricApiVersion: Property<String>
     val javaVersion: Property<Int>

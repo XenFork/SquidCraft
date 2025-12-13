@@ -16,6 +16,7 @@ version = mod_version
 repositories {
     maven("https://maven.shedaniel.me/")
     maven("https://maven.terraformersmc.com/")
+    maven("https://maven.parchmentmc.org/")
 }
 
 base {
@@ -43,7 +44,12 @@ dependencies {
     implementation(project(":common"))
 
     minecraft(fabricVersion.minecraftVersion.map { "com.mojang:minecraft:$it" })
-    mappings(fabricVersion.mappingsVersion.map { "net.fabricmc:yarn:$it:v2" })
+    mappings(fabricVersion.parchmentMinecraftVersion.zip(fabricVersion.parchmentMappingsVersion) { mc, map ->
+        loom.layered {
+            officialMojangMappings()
+            parchment("org.parchmentmc.data:parchment-$mc:$map@zip")
+        }
+    })
     modImplementation(fabricVersion.fabricLoaderVersion.map { "net.fabricmc:fabric-loader:$it" })
     modImplementation(fabricVersion.fabricApiVersion.map { "net.fabricmc.fabric-api:fabric-api:$it" })
 

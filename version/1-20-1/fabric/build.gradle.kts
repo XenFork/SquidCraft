@@ -4,8 +4,9 @@ plugins {
 
 fabricVersion {
     minecraftVersion = "1.20.1"
-    mappingsVersion = "1.20.1+build.10"
-    fabricLoaderVersion = "0.17.2"
+    parchmentMinecraftVersion = "1.21.10"
+    parchmentMappingsVersion = "2025.10.12"
+    fabricLoaderVersion = "0.18.2"
     fabricApiVersion = "0.92.6+1.20.1"
     javaVersion = 17
     requiredMinecraftVersion = ">=1.20 <1.20.2-"

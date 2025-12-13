@@ -6,20 +6,16 @@ import io.github.xenfork.squidcraft.common.datagen.*;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Models;
-import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
-import net.minecraft.data.server.recipe.RecipeProvider;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.ItemModelGenerators;
+import net.minecraft.data.models.model.ModelTemplates;
+import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,16 +38,16 @@ public class SquidCraftFabricDataGen implements DataGeneratorEntrypoint {
                     language.values().forEach(translationBuilder::add);
                     language.items().forEach((id, name) -> translationBuilder.add(RegUtil.item(id), name));
                     language.blocks().forEach((id, name) -> translationBuilder.add(RegUtil.block(id), name));
-                    language.creativeTabs().forEach((id, name) -> translationBuilder.add(RegUtil.key(RegistryKeys.ITEM_GROUP, id), name));
+                    language.creativeTabs().forEach((id, name) -> translationBuilder.add(RegUtil.key(Registries.CREATIVE_MODE_TAB, id), name));
                 }
             });
         }
 
         pack.addProvider((output, registriesFuture) -> new FabricTagProvider.ItemTagProvider(output, registriesFuture) {
             @Override
-            protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            protected void addTags(HolderLookup.Provider wrapperLookup) {
                 for (CommonTagProvider itemTag : common.itemTags()) {
-                    var builder = getOrCreateTagBuilder(RegUtil.tagKey(RegistryKeys.ITEM, itemTag.identifier()));
+                    var builder = getOrCreateTagBuilder(RegUtil.tagKey(Registries.ITEM, itemTag.identifier()));
                     for (CommonIdentifier identifier : itemTag.values()) {
                         builder.add(RegUtil.item(identifier));
                     }
@@ -64,7 +60,7 @@ public class SquidCraftFabricDataGen implements DataGeneratorEntrypoint {
             public void generate() {
                 for (CommonBlockLootTableProvider lootTable : common.blockLootTables()) {
                     for (CommonIdentifier identifier : lootTable.drops()) {
-                        addDrop(RegUtil.block(identifier));
+                        dropSelf(RegUtil.block(identifier));
                     }
                 }
             }
@@ -72,9 +68,9 @@ public class SquidCraftFabricDataGen implements DataGeneratorEntrypoint {
 
         pack.addProvider((output, registriesFuture) -> new FabricRecipeProvider(output) {
             @Override
-            public void generate(Consumer<RecipeJsonProvider> exporter) {
+            public void buildRecipes(Consumer<FinishedRecipe> exporter) {
                 for (CommonReversibleCompactingRecipe recipe : common.reversibleCompactingRecipes()) {
-                    offerReversibleCompactingRecipes(
+                    nineBlockStorageRecipes(
                         exporter,
                         recipeCategory(recipe.reverseCategory()),
                         RegUtil.item(recipe.baseItem()),
@@ -84,26 +80,26 @@ public class SquidCraftFabricDataGen implements DataGeneratorEntrypoint {
                 }
 
                 for (CommonShapelessRecipe recipe : common.shapelessRecipes()) {
-                    ShapelessRecipeJsonBuilder builder = ShapelessRecipeJsonBuilder.create(recipeCategory(recipe.category()),
+                    ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(recipeCategory(recipe.category()),
                         RegUtil.item(recipe.output()),
                         recipe.count());
                     List<String> put = new ArrayList<>(recipe.ingredients().size());
                     for (CommonIdentifier ingredient : recipe.ingredients()) {
                         Item item = RegUtil.item(ingredient);
-                        builder.input(item);
-                        String criterion = hasItem(item);
+                        builder.requires(item);
+                        String criterion = getHasName(item);
                         if (!put.contains(criterion)) {
-                            builder.criterion(criterion, conditionsFromItem(item));
+                            builder.unlockedBy(criterion, has(item));
                             put.add(criterion);
                         }
                     }
-                    builder.offerTo(exporter);
+                    builder.save(exporter);
                 }
 
                 for (CommonFoodRecipe recipe : common.foodRecipes()) {
-                    offerCookRecipe(recipe, recipe.baseCookingTime(), CookingRecipeJsonBuilder::createSmelting, exporter, "smelting");
-                    offerCookRecipe(recipe, recipe.baseCookingTime() / 2, CookingRecipeJsonBuilder::createSmoking, exporter, "smoking");
-                    offerCookRecipe(recipe, recipe.baseCookingTime() * 3, CookingRecipeJsonBuilder::createCampfireCooking, exporter, "campfire_cooking");
+                    offerCookRecipe(recipe, recipe.baseCookingTime(), SimpleCookingRecipeBuilder::smelting, exporter, "smelting");
+                    offerCookRecipe(recipe, recipe.baseCookingTime() / 2, SimpleCookingRecipeBuilder::smoking, exporter, "smoking");
+                    offerCookRecipe(recipe, recipe.baseCookingTime() * 3, SimpleCookingRecipeBuilder::campfireCooking, exporter, "campfire_cooking");
                 }
             }
 
@@ -115,18 +111,18 @@ public class SquidCraftFabricDataGen implements DataGeneratorEntrypoint {
 
         pack.addProvider((output, registriesFuture) -> new FabricModelProvider(output) {
             @Override
-            public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+            public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
                 CommonModelProvider modelProvider = common.modelProvider();
                 for (CommonIdentifier identifier : modelProvider.blockCubeAll()) {
-                    blockStateModelGenerator.registerSimpleCubeAll(RegUtil.block(identifier));
+                    blockStateModelGenerator.createTrivialCube(RegUtil.block(identifier));
                 }
             }
 
             @Override
-            public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+            public void generateItemModels(ItemModelGenerators itemModelGenerator) {
                 CommonModelProvider modelProvider = common.modelProvider();
                 for (CommonIdentifier identifier : modelProvider.itemGenerated()) {
-                    itemModelGenerator.register(RegUtil.item(identifier), Models.GENERATED);
+                    itemModelGenerator.generateFlatItem(RegUtil.item(identifier), ModelTemplates.FLAT_ITEM);
                 }
             }
         });
@@ -141,29 +137,29 @@ public class SquidCraftFabricDataGen implements DataGeneratorEntrypoint {
 
     @FunctionalInterface
     private interface CookingRecipeFactory {
-        CookingRecipeJsonBuilder create(Ingredient input, RecipeCategory category, ItemConvertible output, float experience, int cookingTime);
+        SimpleCookingRecipeBuilder create(Ingredient input, RecipeCategory category, ItemLike output, float experience, int cookingTime);
     }
 
     private static void offerCookRecipe(
         CommonFoodRecipe recipe,
         int cookingTime,
         CookingRecipeFactory factory,
-        Consumer<RecipeJsonProvider> exporter,
+        Consumer<FinishedRecipe> exporter,
         String method
     ) {
         Item output = RegUtil.item(recipe.output());
-        CookingRecipeJsonBuilder builder = factory.create(Ingredient.ofItems(recipe.ingredients().stream()
+        SimpleCookingRecipeBuilder builder = factory.create(Ingredient.of(recipe.ingredients().stream()
                 .map(RegUtil::item)
-                .toArray(ItemConvertible[]::new)),
+                .toArray(ItemLike[]::new)),
             recipeCategory(recipe.category()),
             output,
             recipe.experience(),
             cookingTime);
         for (CommonIdentifier ingredient : recipe.ingredients()) {
             Item item = RegUtil.item(ingredient);
-            builder.criterion(RecipeProvider.hasItem(item),
-                RecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(item).build()));
+            builder.unlockedBy(RecipeProvider.getHasName(item),
+                RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(item).build()));
         }
-        builder.offerTo(exporter, SquidCraftCommon.MOD_ID + ":" + RecipeProvider.getItemPath(output) + "_from_" + method);
+        builder.save(exporter, SquidCraftCommon.MOD_ID + ":" + RecipeProvider.getItemName(output) + "_from_" + method);
     }
 }

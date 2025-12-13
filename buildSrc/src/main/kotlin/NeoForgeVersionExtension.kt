@@ -10,6 +10,7 @@ interface NeoForgeVersionExtension {
     val neoVersion: Property<String>
     val javaVersion: Property<Int>
     val minecraftVersionRange: Property<String>
+    val reiVersion: Property<String>
 }
 
 fun Project.neoforgeVersion(action: Action<NeoForgeVersionExtension>) {
