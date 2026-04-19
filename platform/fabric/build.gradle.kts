@@ -5,9 +5,14 @@ plugins {
 version = providers.gradleProperty("mod_version").get()
 group = providers.gradleProperty("maven_group").get()
 
+val mod_id: String by rootProject
 val required_java_version: String by rootProject
 val minecraft_version: String by rootProject
 val fabric_minecraft_version_range: String by rootProject
+
+base {
+    archivesName = mod_id
+}
 
 loom {
     splitEnvironmentSourceSets()
@@ -92,13 +97,14 @@ java {
 }
 
 tasks.withType<Jar> {
-    archiveVersion = "$version-$minecraft_version-fabric"
+    archiveVersion = "$version-fabric"
 }
 
 tasks.jar {
-    inputs.property("projectName", project.name)
+    val projectName = project.name
+    inputs.property("projectName", projectName)
 
     from(rootDir.resolve("LICENSE")) {
-        rename { "${it}_${project.name}" }
+        rename { "${it}_$projectName" }
     }
 }

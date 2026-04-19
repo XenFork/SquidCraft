@@ -57,7 +57,7 @@ jobs:
         with:
           name: build
           path: |
-            version/*/*/build/libs/*.jar
+            platform/*/build/libs/*.jar
 
 
   dependency-submission:

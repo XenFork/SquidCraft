@@ -156,3 +156,20 @@ neoForge.ideSyncTask(generateModMetadata)
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8" // Use the UTF-8 charset for Java compilation
 }
+
+java {
+    withSourcesJar()
+}
+
+tasks.withType<Jar> {
+    archiveVersion = "$version-neoforge"
+}
+
+tasks.jar {
+    val projectName = project.name
+    inputs.property("projectName", projectName)
+
+    from(rootDir.resolve("LICENSE")) {
+        rename { "${it}_$projectName" }
+    }
+}
