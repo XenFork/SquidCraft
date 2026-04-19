@@ -37,6 +37,7 @@ repositories {
         name = "Terraformers"
         url = uri("https://maven.terraformersmc.com/")
     }
+    maven("https://maven.ryanliptak.com/")
 }
 
 dependencies {
@@ -46,6 +47,7 @@ dependencies {
     implementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
 
     implementation("com.terraformersmc:modmenu:${providers.gradleProperty("modmenu_version").get()}")
+    runtimeOnly("squeek.appleskin:appleskin-fabric:${providers.gradleProperty("fabric_appleskin_version").get()}")
 }
 
 val copyCommonCode = tasks.register<Copy>("copyCommonCode") {

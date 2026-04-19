@@ -14,6 +14,7 @@ group = providers.gradleProperty("maven_group").get()
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven("https://maven.ryanliptak.com/")
 }
 
 base {
@@ -108,6 +109,7 @@ configurations {
 
 dependencies {
     compileOnly(rootProject)
+    runtimeOnly("squeek.appleskin:appleskin-neoforge:${providers.gradleProperty("neo_appleskin_version").get()}")
 }
 
 val copyCommonCode = tasks.register<Copy>("copyCommonCode") {

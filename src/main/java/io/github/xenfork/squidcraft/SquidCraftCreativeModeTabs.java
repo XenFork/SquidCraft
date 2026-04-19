@@ -6,6 +6,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
+
+import java.util.function.Consumer;
 
 /// @since 26.1.0
 public final class SquidCraftCreativeModeTabs {
@@ -25,5 +28,12 @@ public final class SquidCraftCreativeModeTabs {
         .build();
 
     private SquidCraftCreativeModeTabs() {
+    }
+
+    public static void addFoods(Consumer<ItemLike> consumer) {
+        consumer.accept(SquidCraftItems.SHREDDED_SQUID);
+        consumer.accept(SquidCraftItems.COOKED_SHREDDED_SQUID);
+        consumer.accept(SquidCraftItems.GLOW_SHREDDED_SQUID);
+        consumer.accept(SquidCraftItems.MAGMA_SHREDDED_SQUID);
     }
 }

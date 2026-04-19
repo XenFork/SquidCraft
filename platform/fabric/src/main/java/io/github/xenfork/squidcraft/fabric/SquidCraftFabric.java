@@ -2,6 +2,7 @@ package io.github.xenfork.squidcraft.fabric;
 
 import io.github.xenfork.squidcraft.*;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.core.Holder;
@@ -11,6 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -25,6 +27,8 @@ public class SquidCraftFabric implements ModInitializer {
         SquidCraftBlocks.registerAll((id, block) -> Registry.register(BuiltInRegistries.BLOCK, id, block));
         SquidCraftItems.registerAll((id, item) -> Registry.register(BuiltInRegistries.ITEM, id, item));
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, SquidCraftCreativeModeTabs.MAIN_KEY, creativeModeTab(SquidCraftCreativeModeTabs.MAIN));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+            .register(output -> SquidCraftCreativeModeTabs.addFoods(output::accept));
         registerLootTables();
     }
 

@@ -3,9 +3,11 @@ package io.github.xenfork.squidcraft.neoforge;
 import io.github.xenfork.squidcraft.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 /// @since 0.14.0
@@ -27,5 +29,12 @@ public class SquidCraftNeoForge {
             .displayItems((parameters, output) ->
                 commonCreativeModeTab.displayItems.accept(parameters, output::accept))
             .build();
+    }
+
+    @SubscribeEvent
+    public static void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            SquidCraftCreativeModeTabs.addFoods(event::accept);
+        }
     }
 }
