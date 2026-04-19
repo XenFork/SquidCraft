@@ -3,13 +3,14 @@ pluginManagement {
         maven("https://maven.fabricmc.net/")
         gradlePluginPortal()
     }
+
+    plugins {
+        id("net.fabricmc.fabric-loom") version providers.gradleProperty("fabric_loom_version")
+        id("net.neoforged.moddev") version providers.gradleProperty("neoforged_moddev_version")
+    }
 }
 
 rootProject.name = "squidcraft"
 
-include("common")
-rootDir.resolve("version").listFiles().forEach {
-    it.listFiles().forEach { platform ->
-        include("version:${it.name}:${platform.name}")
-    }
-}
+include("platform:fabric")
+include("platform:neoforge")
