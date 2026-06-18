@@ -10,7 +10,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
@@ -43,11 +43,11 @@ public class SquidCraftFabric implements ModInitializer {
 
     private static void registerLootTables() {
         LootTableEvents.MODIFY_DROPS.register((holder, context, drops) -> {
-            Optional<ResourceKey<LootTable>> squidLootTable = EntityType.SQUID.getDefaultLootTable();
+            Optional<ResourceKey<LootTable>> squidLootTable = EntityTypes.SQUID.getDefaultLootTable();
             if (squidLootTable.isPresent() && holder.is(squidLootTable.get())) {
                 addLootItem(context, drops, SquidCraftLootTables.SHREDDED_SQUID);
             } else {
-                Optional<ResourceKey<LootTable>> glowSquidLootTable = EntityType.GLOW_SQUID.getDefaultLootTable();
+                Optional<ResourceKey<LootTable>> glowSquidLootTable = EntityTypes.GLOW_SQUID.getDefaultLootTable();
                 if (glowSquidLootTable.isPresent() && holder.is(glowSquidLootTable.get())) {
                     addLootItem(context, drops, SquidCraftLootTables.GLOW_SHREDDED_SQUID);
                 }

@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "26.1" ]
+    branches: [ "26.2", "26.1" ]
   pull_request:
-    branches: [ "26.1" ]
+    branches: [ "26.2", "26.1" ]
   workflow_dispatch:
 
 jobs:
